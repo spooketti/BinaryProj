@@ -1,0 +1,16 @@
+html,body
+{
+    height:100%;
+    width:100%;
+    overflow-x: clip;
+}
+
+#NavBar
+{
+    height:10%;
+    left:0;
+    top:0;
+    width:100%;
+    position: fixed;
+    background-color: black;
+}
