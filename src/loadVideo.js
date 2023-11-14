@@ -1,10 +1,11 @@
+let canvas = document.getElementById("canvasElement")
+let ctx = canvas.getContext("2d")
+let but = document.getElementById("but");
+let videoElement = document.getElementById("vid");
+let mediaDevices = navigator.mediaDevices;
+vid.muted = true;
+let fps = 60
 document.addEventListener("DOMContentLoaded", () => {
-    let canvas = document.getElementById("canvasElement")
-    let ctx = canvas.getContext("2d")
-    let but = document.getElementById("but");
-    let videoElement = document.getElementById("vid");
-    let mediaDevices = navigator.mediaDevices;
-    vid.muted = true;
     but.addEventListener("click", () => {
 
         // Accessing the user camera and video.
@@ -19,15 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 videoElement.srcObject = stream;
                 videoElement.addEventListener("loadedmetadata", () => {
                     videoElement.play();
+                canvas.height = stream.getTracks()[0].getSettings().height
+                canvas.width = stream.getTracks()[0].getSettings().width
+                activateCamera()
                 });
             })
             .catch(alert);
-            function drawImage(dat) {
-                ctx.drawImage(dat, 0, 0, canvaselement.width, canvaselement.height);
-            }
-            canvasInterval = window.setInterval(() => {
-                drawImage(videoElement);
-            }, 1000 / fps);
     });
 });
 
+function drawImage(dat) {
+    ctx.drawImage(dat, 0, 0, canvas.width, canvas.height);
+}
+
+function activateCamera()
+{
+canvasInterval = window.setInterval(() => {
+    drawImage(videoElement);
+}, 1000 / fps);
+}
