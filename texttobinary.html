@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text to Binary Converter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+    }
+    /* Styles for h2 elements */
+    h2 {
+        color: #333366;
+        margin-bottom: 20px;
+    }
+    /* Styles for p elements */
+    p {
+        color: #666666;
+    }
+    /* Styles for buttons */
+    button {
+        background-color: #4CAF50; /* Green */
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #45a049 !important;
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+    /* Styles for the #firstSection */
+    #firstSection {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    @keyframes colorChange {
+        0% { color: black; }
+        50% { color: grey; }
+        100% { color: black; }
+    }
+
+    #firstText {
+        animation: colorChange 2s infinite;
+    }
+
+    #firstSection {
+        text-align: center;
+        padding: 50px;
+        border: 1px solid #ccc;
+        margin: 20px auto;
+        width: 400px;
+    }
+
+    #button1 {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(255, 100, 255, 0.87);
+    }
+
+    #home
+    {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .cryptWrapper
+    {
+        padding: 20%;
+        height:auto;
+        gap:30%;
+        text-shadow: 0 0 100px rgba(90, 70, 202, 0.87);
+        margin-right: 110px;
+        box-shadow: 0 0 10px rgba(116, 46, 255, 0.627);
+        width: 100%;
+    }
+
+    .cryptInput
+    {
+        width:100%;
+        height:150px;
+        text-align: start;
+        resize: none;
+        box-shadow: 0 0 20px rgba(83, 39, 205, 0.87);
+    }
+
+    .cryptButton
+    {
+        position: relative;
+        left:25%;
+        top:1%;
+        background-color: rgb(0, 100, 0) !important;
+        box-shadow: 0 0 10px rgba(100, 255, 118, 0.87);
+    }
+
+    .cryptButton:active
+    {
+        filter: brightness(50%);
+    }
+
+    #decryptButton
+    {
+        position: relative;
+        top:6%;
+        left:25%;
+        box-shadow: 0 0 10px rgba(100, 255, 118, 0.87);
+    }
+
+    #decryptOutput
+    {
+        position: relative;
+        top:5.5%;
+        
+    }
+    #Ban
+    {
+        position:fixed;
+        left:0%;
+        top:15%;
+    }
+    #Mynavbar
+    {
+        box-shadow: 0 0 10px rgba(100, 255, 118, 0.87);
+    }
+    .typewriter h1 {
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .15em; /* Adjust as needed */
+        animation: 
+          typing 3.5s steps(40, end),
+          blink-caret .75s step-end infinite;
+      }
+      
+      /* The typing effect */
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+      
+      /* The typewriter cursor effect */
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: orange; }
+    }  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputText = document.getElementById('inputText');
+      const binaryOutput = document.getElementById('binaryOutput');
+      const convertButton = document.getElementById('convertButton');
+
+      convertButton.addEventListener('click', function() {
+        const text = inputText.value;
+        let binaryResult = '';
+
+        for (let i = 0; i < text.length; i++) {
+          const binaryChar = text[i].charCodeAt(0).toString(2);
+          binaryResult += ' ' + '0'.repeat(8 - binaryChar.length) + binaryChar;
+        }
+
+        binaryOutput.textContent = binaryResult.trim();
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Text to Binary Converter</h1>
+    <label for="inputText">Enter text:</label>
+    <input type="text" id="inputText">
+    <button id="convertButton">Convert</button>
+    <p>Binary result:</p>
+    <p id="binaryOutput"></p>
+  </div>
+</body>
+</html>
