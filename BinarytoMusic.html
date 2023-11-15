@@ -1,0 +1,15 @@
+<audio id="myAudio" src="testbeat.mp3" preload="auto"></audio>
+<button onclick="playMusic()">Play Music</button>
+<button onclick="pauseMusic()">Pause Music</button>
+
+<script>
+    var audio = document.getElementById("myAudio");
+
+    function playMusic() {
+        audio.play();
+    }
+    
+    function pauseMusic() {
+        audio.pause();
+    }
+</script>
