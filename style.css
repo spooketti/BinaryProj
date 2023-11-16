@@ -2,7 +2,6 @@ html,body
 {
     height:100%;
     width:100%;
-    overflow-x: clip;
 }
 
 #NavBar
@@ -13,4 +12,18 @@ html,body
     width:100%;
     position: fixed;
     background-color: black;
+}
+
+#bwText
+{
+    max-width:640ch;
+    word-wrap:break-word;
+    font-size: 2px;
+    font: 2px monospace;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#binText
+{
+    font-size: xx-small;
 }
