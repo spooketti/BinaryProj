@@ -1,84 +1,26 @@
-html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    overflow-x: hidden; /* Use hidden to prevent horizontal scrolling */
-}
-
-body {
-    font-family: 'Arial', sans-serif; /* Set a default font-family for better consistency */
+html,body
+{
+    height:100%;
+    width:100%;
 }
 
 #NavBar {
     height: 60px; /* Use a specific height instead of a percentage for better control */
     width: 100%;
     position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333; /* Use a dark color for better contrast */
-    color: #fff; /* Set text color to white for better visibility */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for a lifted look */
-    z-index: 1000; /* Ensure the navbar is on top of other elements */
-    display: flex; /* Use flexbox for better layout control */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Distribute items evenly along the horizontal axis */
-    padding: 0 20px; /* Add some padding to the left and right */
+    background-color: black;
 }
 
-/* Style for navigation links */
-#NavBar a {
-    color: #fff; /* Set link color to white */
-    text-decoration: none; /* Remove underline from links */
-    margin: 0 15px; /* Add spacing between links */
-    font-weight: bold; /* Make the text bold */
+#bwText
+{
+    max-width:640ch;
+    word-wrap:break-word;
+    font-size: 2px;
+    font: 2px monospace;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-#NavBar a:hover {
-    text-decoration: underline; /* Underline on hover for better user feedback */
+#binText
+{
+    font-size: xx-small;
 }
-
-/* Add media query for smaller screens */
-@media (max-width: 768px) {
-    #NavBar {
-        height: auto; /* Allow the navbar to adjust its height based on content */
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        text-align: center; /* Center text on smaller screens */
-    }
-
-    #NavBar a {
-        margin: 10px 0; /* Adjust spacing for smaller screens */
-    }
-}
-/* style.css */
-
-/* Basic reset and style for the nav bar */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  #NavBar {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  #NavBar button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #555;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #NavBar button:hover {
-    background-color: #777;
-  }
-  
