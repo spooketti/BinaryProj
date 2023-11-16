@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,12 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Binary Webcam</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
   </head>
   <body>
-    <nav id="NavBar">Nav Bar</nav>
-    <video id="vid" autoplay playsinline webkit-playsinline muted hidden> 
-        
-    </video>
+    <nav id="NavBar">
+      Nav Bar
+      <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
+      <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button> 
+
+    </nav>
+    <video id="vid" autoplay playsinline webkit-playsinline muted hidden></video>
     <canvas id="canvasElement" width="640" height="480"></canvas>
     <button id="but">act</button>
     <p id="bwText"></p>

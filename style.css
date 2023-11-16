@@ -4,12 +4,9 @@ html,body
     width:100%;
 }
 
-#NavBar
-{
-    height:10%;
-    left:0;
-    top:0;
-    width:100%;
+#NavBar {
+    height: 60px; /* Use a specific height instead of a percentage for better control */
+    width: 100%;
     position: fixed;
     background-color: black;
 }
