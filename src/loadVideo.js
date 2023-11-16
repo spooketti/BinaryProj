@@ -70,5 +70,5 @@ function activateCamera()
 {
 canvasInterval = window.setInterval(() => {
     drawImage(videoElement);
-}, 1000 / 5);
+}, 1000 / fps);
 }
