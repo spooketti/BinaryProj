@@ -173,4 +173,46 @@
     });
   </script>
 </body>
+
+<head>
+    <title>Binary Reader</title>
+</head>
+<body>
+    <label for="sequenceInput">Enter sequence (0s and 1s):</label>
+    <input type="text" id="sequenceInput">
+    <button onclick="startReading()">Start</button>
+
+    <audio id="audio1" src="binary_beat.mp3"></audio>
+
+    <script>
+        async function startReading() {
+            const sequence = document.getElementById('sequenceInput').value;
+            const audio = document.getElementById('audio1');
+            for (let i = 0; i < sequence.length; i++) {
+                let digit = sequence.charAt(i);
+                console.log(digit);
+                if (digit === '1') {
+                    await playAudio(audio);
+                }
+                await delay(50); // 0.25 second delay
+            }
+        }
+
+        function playAudio(audioElement) {
+            return new Promise((resolve) => {
+                audioElement.play();
+                audioElement.onended = () => {
+                    resolve();
+                };
+            });
+        }
+
+        function delay(ms) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, ms);
+            });
+        }
+    </script>
+</body>
 </html>
+
