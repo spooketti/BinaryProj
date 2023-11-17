@@ -1,15 +1,176 @@
-<audio id="myAudio" src="testbeat.mp3" preload="auto"></audio>
-<button onclick="playMusic()">Play Music</button>
-<button onclick="pauseMusic()">Pause Music</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Binary to Music</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <style>
+    /* css Styles */
 
-<script>
+    /* flexbox (rectangle with round edges) setup */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #3498DB;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* navbar style */
+    .navbar {
+      position: fixed;
+      top: 0;
+      background-color: #333;
+      width: 100%;
+      padding: 8px 0;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .navbar h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+      display: none; /* hides text */
+    }
+
+    /* main content container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 120px; 
+    }
+
+    /* more box styles */
+    .box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s, transform 0.3s;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-around;
+      width: 300px;
+    }
+    .box:hover {
+      box-shadow: 0 8px 16px rgba(255, 99, 71, 0.6);
+      transform: scale(1.05);
+    }
+
+    /* color square styles */
+    .color-square {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .color-square:hover {
+      transform: scale(1.1);
+    }
+    .red { background-color: #FF6347; }
+    .blue { background-color: #3498DB; }
+    .green { background-color: #2ECC71; }
+    .yellow { background-color: #F1C40F; }
+
+    /* title styles */
+    .title {
+      font-size: 3em;
+      text-align: center;
+      font-weight: 100;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* button styles */
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar">
+    <!-- navbar Title -->
+    <h2>NavBar</h2>
+    <!-- binary to Music and Text to Binary buttons -->
+    <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
+    <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button>
+  </nav>
+
+  <!-- title for binary to msuic -->
+  <div class="container">
+    <!-- Title box -->
+    <div class="box title-box">
+      <!-- dispalys the title -->
+      <h1 class="title">Binary to Music</h1>
+    </div>
+
+    <!-- color squares -->
+    <div class="box" style="margin-bottom: 100px;"> <!-- These color blocks, kind of like paint palettes but cooler -->
+      <!-- red block with binary  -->
+      <div class="color-square red">
+        Red<br>
+        01110010 01100101 01100100 <!-- binary for "red" -->
+      </div>
+      <!-- blue block with binary -->
+      <div class="color-square blue">
+        Blue<br>
+        01100010 01101100 01110101 01100101 <!-- binary for "blue" -->
+      </div>
+      <!-- green block with binary  -->
+      <div class="color-square green">
+        Green<br>
+        01100111 01110010 01100101 01100101 01101110 <!-- binary for "green" -->
+      </div>
+      <!-- yellow block with binary  -->
+      <div class="color-square yellow">
+        Yellow<br>
+        01111001 01100101 01101100 01101100 01101111 01110111 <!-- binary for "yellow" -->
+      </div>
+    </div>
+
+    <!-- pause and play buttons.. -->
+    <div class="box buttons">
+      <audio id="myAudio" src="testbeat.mp3" preload="auto"></audio>
+      <button id="playBtn">Play Music</button>
+      <button id="pauseBtn">Pause Music</button>
+    </div>
+  </div>
+
+  <!-- js for pause and play -->
+  <script>
     var audio = document.getElementById("myAudio");
+    var playBtn = document.getElementById("playBtn");
+    var pauseBtn = document.getElementById("pauseBtn");
 
-    function playMusic() {
-        audio.play();
-    }
-    
-    function pauseMusic() {
-        audio.pause();
-    }
-</script>
+    playBtn.addEventListener("click", function() {
+      audio.play();
+    });
+
+    pauseBtn.addEventListener("click", function() {
+      audio.pause();
+    });
+  </script>
+</body>
+</html>
