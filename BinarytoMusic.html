@@ -5,9 +5,8 @@
   <title>Binary to Music</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
   <style>
-    /* css Styles */
-
-    /* flexbox (rectangle with round edges) setup */
+    /* CSS Styles */
+    /* Flexbox (rectangle with round edges) setup */
     body {
       display: flex;
       flex-direction: column;
@@ -18,8 +17,7 @@
       background-color: #3498DB;
       font-family: 'Roboto', sans-serif;
     }
-
-    /* navbar style */
+    /* Navbar style */
     .navbar {
       position: fixed;
       top: 0;
@@ -35,16 +33,14 @@
       font-size: 18px;
       display: none; /* hides text */
     }
-
-    /* main content container */
+    /* Main content container */
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 120px; 
+      margin-top: 120px;
     }
-
-    /* more box styles */
+    /* More box styles */
     .box {
       background-color: #fff;
       padding: 20px;
@@ -60,8 +56,7 @@
       box-shadow: 0 8px 16px rgba(255, 99, 71, 0.6);
       transform: scale(1.05);
     }
-
-    /* color square styles */
+    /* Color square styles */
     .color-square {
       width: 50px;
       height: 50px;
@@ -72,6 +67,20 @@
       align-items: center;
       font-size: 12px;
       font-weight: bold;
+      cursor: pointer;
+      position: relative;
+    }
+    .color-square .binary-text {
+      display: none; /* Hidden by default */
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1;
     }
     .color-square:hover {
       transform: scale(1.1);
@@ -80,8 +89,7 @@
     .blue { background-color: #3498DB; }
     .green { background-color: #2ECC71; }
     .yellow { background-color: #F1C40F; }
-
-    /* title styles */
+    /* Title styles */
     .title {
       font-size: 3em;
       text-align: center;
@@ -89,8 +97,7 @@
       letter-spacing: 4px;
       margin-bottom: 10px;
     }
-
-    /* button styles */
+    /* Button styles */
     .buttons {
       display: flex;
       gap: 10px;
@@ -109,110 +116,101 @@
   </style>
 </head>
 <body>
-  <!-- navbar -->
+  <!-- Navbar -->
   <nav class="navbar">
     <!-- navbar Title -->
     <h2>NavBar</h2>
     <!-- binary to Music and Text to Binary buttons -->
-    <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
+    <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button>
     <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button>
   </nav>
-
-  <!-- title for binary to msuic -->
+  <!-- Title for binary to music -->
   <div class="container">
     <!-- Title box -->
     <div class="box title-box">
-      <!-- dispalys the title -->
+      <!-- Display the title -->
       <h1 class="title">Binary to Music</h1>
     </div>
-
-    <!-- color squares -->
-    <div class="box" style="margin-bottom: 100px;"> <!-- These color blocks, kind of like paint palettes but cooler -->
-      <!-- red block with binary  -->
-      <div class="color-square red">
-        Red<br>
-        01110010 01100101 01100100 <!-- binary for "red" -->
+    <!-- Modified color squares -->
+    <div class="box" style="margin-bottom: 100px;">
+      <!-- Red block with a placeholder for binary -->
+      <div class="color-square red" onclick="showBinary(this)">
+        Red <!-- Displayed initially -->
+        <span class="binary-text">01110010 01100101 01100100</span> <!-- Hidden by default -->
       </div>
-      <!-- blue block with binary -->
-      <div class="color-square blue">
-        Blue<br>
-        01100010 01101100 01110101 01100101 <!-- binary for "blue" -->
+      <!-- Blue block with a placeholder for binary -->
+      <div class="color-square blue" onclick="showBinary(this)">
+        Blue <!-- Displayed initially -->
+        <span class="binary-text">01100010 01101100 01110101 01100101</span> <!-- Hidden by default -->
       </div>
-      <!-- green block with binary  -->
-      <div class="color-square green">
-        Green<br>
-        01100111 01110010 01100101 01100101 01101110 <!-- binary for "green" -->
+      <!-- Green block with a placeholder for binary -->
+      <div class="color-square green" onclick="showBinary(this)">
+        Green <!-- Displayed initially -->
+        <span class="binary-text">01100111 01110010 01100101 01100101 01101110</span> <!-- Hidden by default -->
       </div>
-      <!-- yellow block with binary  -->
-      <div class="color-square yellow">
-        Yellow<br>
-        01111001 01100101 01101100 01101100 01101111 01110111 <!-- binary for "yellow" -->
+      <!-- Yellow block with a placeholder for binary -->
+      <div class="color-square yellow" onclick="showBinary(this)">
+        Yellow <!-- Displayed initially -->
+        <span class="binary-text">01111001 01100101 01101100 01101100 01101111 01110111</span> <!-- Hidden by default -->
       </div>
     </div>
-
-    <!-- pause and play buttons.. -->
+    <!-- Pause and play buttons -->
     <div class="box buttons">
       <audio id="myAudio" src="testbeat.mp3" preload="auto"></audio>
       <button id="playBtn">Play Music</button>
       <button id="pauseBtn">Pause Music</button>
     </div>
-  </div>
-
-  <!-- js for pause and play -->
-  <script>
-    var audio = document.getElementById("myAudio");
-    var playBtn = document.getElementById("playBtn");
-    var pauseBtn = document.getElementById("pauseBtn");
-
-    playBtn.addEventListener("click", function() {
-      audio.play();
-    });
-
-    pauseBtn.addEventListener("click", function() {
-      audio.pause();
-    });
-  </script>
-</body>
-
-<head>
-    <title>Binary Reader</title>
-</head>
-<body>
+    <!-- Binary reader -->
     <label for="sequenceInput">Enter sequence (0s and 1s):</label>
     <input type="text" id="sequenceInput">
     <button onclick="startReading()">Start</button>
-
     <audio id="audio1" src="binary_beat.mp3"></audio>
-
     <script>
-        async function startReading() {
-            const sequence = document.getElementById('sequenceInput').value;
-            const audio = document.getElementById('audio1');
-            for (let i = 0; i < sequence.length; i++) {
-                let digit = sequence.charAt(i);
-                console.log(digit);
-                if (digit === '1') {
-                    await playAudio(audio);
-                }
-                await delay(50); // 0.25 second delay
-            }
-        }
+      function showBinary(element) {
+        const binaryText = element.querySelector('.binary-text');
+        binaryText.style.display = (binaryText.style.display === 'none' || !binaryText.style.display) ? 'inline' : 'none';
+      }
 
-        function playAudio(audioElement) {
-            return new Promise((resolve) => {
-                audioElement.play();
-                audioElement.onended = () => {
-                    resolve();
-                };
-            });
-        }
+      var audio = document.getElementById("myAudio");
+      var playBtn = document.getElementById("playBtn");
+      var pauseBtn = document.getElementById("pauseBtn");
 
-        function delay(ms) {
-            return new Promise((resolve) => {
-                setTimeout(resolve, ms);
-            });
+      playBtn.addEventListener("click", function() {
+        audio.play();
+      });
+
+      pauseBtn.addEventListener("click", function() {
+        audio.pause();
+      });
+    
+      async function startReading() {
+        const sequence = document.getElementById('sequenceInput').value;
+        const audio = document.getElementById('audio1');
+        for (let i = 0; i < sequence.length; i++) {
+          let digit = sequence.charAt(i);
+          console.log(digit);
+          if (digit === '1') {
+            await playAudio(audio);
+          }
+          await delay(50); // 0.25 second delay
         }
+      }
+
+      function playAudio(audioElement) {
+        return new Promise((resolve) => {
+          audioElement.play();
+          audioElement.onended = () => {
+            resolve();
+          };
+        });
+      }
+
+      function delay(ms) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, ms);
+        });
+      }
     </script>
+  </div>
 </body>
 </html>
-
