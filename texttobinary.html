@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Binary Webcam</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="sidenav.css">
         <style>
     
         </style>
@@ -185,6 +186,7 @@
       });
     });
   </script>
+  
   <nav id="NavBar">
     Nav Bar
     <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
@@ -193,6 +195,20 @@
   </nav>
 </head>
 <body>
+  <div id="SideNavModal"></div>
+  <nav id="SideNav">
+    
+    <div id="SideNavBar">
+      <h1 id="SideNavTitle">Text to Binary</h1>
+      <img id="CreatorImg" src="deva.png">
+      <h3 id="SideNavName">Deva Sasikumar</h3>
+      <p id="SideNavDescription">This project recieves user text input and converts the text input into Binary Code</p>
+      <a href="index.html">Webfeed to Binary</a>
+      <br>
+      <a href="BinaryToMusic.html">Binary to Music</a>
+    </div>
+
+  </nav>
   <div class="container">
     <h1>Text to Binary Converter</h1>
     <label for="inputText">Enter text:</label>
@@ -201,5 +217,6 @@
     <p>Binary result:</p>
     <p id="binaryOutput"></p>
   </div>
+  <script src="src/sideNav.js"></script>
 </body>
 </html>

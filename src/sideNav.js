@@ -1,4 +1,5 @@
 let sidevis = true;
+let sideNav = document.getElementById("SideNav")
 let sideModal = document.getElementById("SideNavModal")
 
 document.addEventListener("keydown",function(e)

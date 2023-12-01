@@ -5,7 +5,6 @@ let but = document.getElementById("but");
 let videoElement = document.getElementById("vid");
 let binText = document.getElementById("binText")
 let actText = document.getElementById("activate")
-let sideNav = document.getElementById("SideNav")
 let mediaDevices = navigator.mediaDevices;
 vid.muted = true;
 let fps = 60

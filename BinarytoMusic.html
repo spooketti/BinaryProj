@@ -47,11 +47,25 @@
       font-family: Arial, sans-serif;
     }
   </style>
+  <link rel="stylesheet" href="sidenav.css">
 </head>
 <body>
 
   <h1>Color to Music</h1>
+  <div id="SideNavModal"></div>
+  <nav id="SideNav">
+    
+    <div id="SideNavBar">
+      <h1 id="SideNavTitle">Binary To Music</h1>
+      <img id="CreatorImg" src="jon.png">
+      <h3 id="SideNavName">Soham Kulkarni, Sri Surapaneni  </h3>
+      <p id="SideNavDescription">We did a binary to music converter</p>
+      <a href="index.html">Webfeed To Binary</a>
+      <br>
+      <a href="texttobinary.html">Text to Binary</a>
+    </div>
 
+  </nav>
   <div class="container">
     <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
     <button id="green" class="square-btn" onclick="addToCompiler('green',2)"></button>
@@ -110,6 +124,7 @@
   <button onclick="startReading()">Start</button>
   <audio id="audio1" src="binary_beat.mp3"></audio>
   <audio id="audio2" src="carti_beat.mp3"></audio>
+  <script src="src/sideNav.js"></script>
   <script>
     function showBinary(element) {
       const binaryText = element.querySelector('.binary-text');
