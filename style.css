@@ -16,6 +16,7 @@ body
 }
 
 #NavBar {
+    height: 60px;
     width: 100%;
     padding:1%;
     position: fixed;
