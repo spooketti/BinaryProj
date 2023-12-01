@@ -1,0 +1,103 @@
+#DropDownBin
+{
+    background-color: rgb(37, 37, 37);
+}
+
+#SideNav
+{
+    left:0;
+    top:0;
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index: 4;
+    transition: all 1s;
+    transform: translateX(-100%);
+}
+
+#SideNavBar
+{
+    left:0;
+    top:0;
+    width:20%;
+    height:100%;
+    background-color: black;
+    z-index: 2;
+    position:absolute;
+    font-family: 'DM Sans', sans-serif;
+    color:white;
+}
+
+#SideNavBar a
+{
+    color:white;
+}
+
+#SideNavBAr a:visited
+{
+    color:white;
+}
+
+#SideNavModal
+{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(0, 0, 0, 0.355);
+    z-index: 1;
+    transition: opacity 1s;
+    opacity:0;
+    pointer-events: none;
+}
+
+#SideNavTitle
+{
+    width:100%;
+    height:10%;
+    color:white;
+    font-family: 'DM Sans', sans-serif;
+}
+
+#SideNavName
+{
+    color:white;
+}
+
+#CreatorImg
+{
+    position:relative;
+    width:75%;
+    left:7.25%;
+    height:fit-content;
+    --angle: 0deg;
+    border: 6px dotted;
+    border-image: conic-gradient(from var(--angle), rgb(255, 255, 255), rgb(182, 178, 181), rgb(133, 119, 132), rgb(69, 62, 69), rgb(47, 43, 47),rgb(255, 255, 255)) 1;
+    animation: 3s rotate linear infinite;
+}
+
+@keyframes rotate
+{
+    100% {
+        --angle: 360deg;
+    }
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+@keyframes opaci
+{
+    0%
+    {
+        opacity:0%;
+    }
+    100%
+    {
+        opacity:100%;
+    }
+}

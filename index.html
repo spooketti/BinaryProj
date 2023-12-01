@@ -7,22 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Binary Webcam</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="sidenav.css">
   </head>
   <body>
-    <nav id="NavBar">
-      Nav Bar
-      <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
-      <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button> 
+    <div id="SideNavModal"></div>
+    <nav id="SideNav">
+      
+      <div id="SideNavBar">
+        <h1 id="SideNavTitle">Webfeed to Binary</h1>
+        <img id="CreatorImg" src="jon.png">
+        <h3 id="SideNavName">Jonathan Liu</h3>
+        <p id="SideNavDescription">This project utilizes the mediaDevices API and gets the user's webcam. By sending this feed into a canvas element, it is possible to run a color mask on the canvas to make the image only black and white. Then by iterating through the canvas's pixels, the black and white content is converted to 0s and 1s, and then the binary code is compiled into ASCII.</p>
+        <a href="BinarytoMusic.html">Binary To Music</a>
+        <br>
+        <a href="texttobinary.html">Text to Binary</a>
+      </div>
 
     </nav>
+    
+    <!--
+    <nav id="NavBar">
+      <p id="DropDownBin">Binary Webfeed v</p>
+      <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
+      <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button> 
+    </nav>
+    -->
+    <div></div>
+    <div id="CanvasHold" onclick="WebCamAct()">
+      <span  id="activate">Activate</span>
+      <canvas id="canvasElement" width="640" height="480"></canvas>
+    </div>
     <video id="vid" autoplay playsinline webkit-playsinline muted hidden></video>
-    <canvas id="canvasElement" width="640" height="480"></canvas>
-    <button id="but">act</button>
     <p id="bwText"></p>
     <p id="binText"></p>
 	<script src="src/loadVideo.js"></script>
+  <script src="src/sideNav.js"></script>
   </body>
 </html>

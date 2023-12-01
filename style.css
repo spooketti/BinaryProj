@@ -1,14 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 html,body
 {
     height:100%;
     width:100%;
+    background-color: rgb(49, 49, 49);
+}
+
+body
+{
+    padding-top: 5%;
+    margin:0;
 }
 
 #NavBar {
-    height: 60px; /* Use a specific height instead of a percentage for better control */
     width: 100%;
+    padding:1%;
     position: fixed;
+    height:8%;
+    left:0;
+    top:0;
     background-color: black;
+    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:white;
+    font-family: 'DM Sans', sans-serif;
+    z-index: 3;
 }
 
 #bwText
@@ -18,9 +39,39 @@ html,body
     font-size: 2px;
     font: 2px monospace;
     font-family: 'Courier New', Courier, monospace;
+    background-color: white;
 }
 
 #binText
 {
     font-size: xx-small;
+    color:white;
 }
+
+#CanvasHold
+{
+    position:relative;
+    left:25%;
+    top:1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at top, #000000, transparent),
+            radial-gradient(ellipse at bottom, #cbcbcb, transparent);
+    width:fit-content;
+    height:fit-content;
+}
+
+#canvasElement
+{
+    pointer-events: none;
+}
+
+#activate
+{
+    color:white; 
+    font-size:xx-large;
+    position:absolute; 
+    font-family: 'DM Sans', sans-serif;
+}
+

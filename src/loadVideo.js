@@ -4,12 +4,13 @@ let gl = canvas.getContext("webgl")
 let but = document.getElementById("but");
 let videoElement = document.getElementById("vid");
 let binText = document.getElementById("binText")
+let actText = document.getElementById("activate")
+let sideNav = document.getElementById("SideNav")
 let mediaDevices = navigator.mediaDevices;
 vid.muted = true;
 let fps = 60
-document.addEventListener("DOMContentLoaded", () => {
-    but.addEventListener("click", () => {
-
+function WebCamAct(){
+    actText.style.display = "none"
         // Accessing the user camera and video.
         mediaDevices
             .getUserMedia({
@@ -28,8 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             })
             .catch(alert);
-    });
-});
+    }
 let bwEl = document.getElementById("bwText")
 
 function drawImage(dat) {
@@ -72,3 +72,5 @@ canvasInterval = window.setInterval(() => {
     drawImage(videoElement);
 }, 1000 / fps);
 }
+
+
