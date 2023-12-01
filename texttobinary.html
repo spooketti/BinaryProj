@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <head>
         <meta charset="UTF-8">
@@ -113,39 +113,55 @@
     </style>
 </head>
 <body>
-    <nav>
-        <button onclick="window.location.href='index.html'">Video Feed to Binary</button>
-        <button onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button>
-        <button onclick="window.location.href='texttobinary.html'">Text To Binary</button>
-    </nav>
-
-    <div class="container">
-        <h1>Text to Binary Converter</h1>
-        <label for="inputText">Enter text:</label><br>
-        <input type="text" id="inputText"><br>
-        <button id="convertButton">Convert</button><br>
-        <p>Binary result:</p>
-        <p id="binaryOutput"></p>
+  <div class="container">
+    <div id="binaryToDecimal">
+      <h1>Binary to Decimal</h1>
+      <input type="text" id="binaryInput" placeholder="Enter binary (0s and 1s)">
+      <button onclick="convertBinary()">Convert</button>
+      <p id="decimalResult"></p>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const inputText = document.getElementById('inputText');
-            const binaryOutput = document.getElementById('binaryOutput');
-            const convertButton = document.getElementById('convertButton');
-
-            convertButton.addEventListener('click', function() {
-                const text = inputText.value;
-                let binaryResult = '';
-
-                for (let i = 0; i < text.length; i++) {
-                    const binaryChar = text[i].charCodeAt(0).toString(2);
-                    binaryResult += ' ' + '0'.repeat(8 - binaryChar.length) + binaryChar;
-                }
-
-                binaryOutput.textContent = binaryResult.trim();
-            });
-        });
-    </script>
+    <div id="asciiToBinary">
+      <h1>ASCII to Binary</h1>
+      <input type="text" id="asciiInput" placeholder="Enter ASCII characters">
+      <button onclick="convertASCII()">Convert</button>
+      <p id="binaryASCIIResult"></p>
+    </div>
+  </div>
+  <script>
+    function convertBinary() {
+      const binaryInput = document.getElementById('binaryInput').value;
+      const decimalResult = document.getElementById('decimalResult');
+      if (/^[01]+$/.test(binaryInput)) {
+        const decimal = parseInt(binaryInput, 2);
+        decimalResult.textContent = `Decimal: ${decimal}`;
+      } else {
+        decimalResult.textContent = 'Please enter a valid binary number (0s and 1s)!';
+      }
+    }
+    function convertASCII() {
+      const asciiInput = document.getElementById('asciiInput').value;
+      const binaryASCIIResult = document.getElementById('binaryASCIIResult');
+      let binaryResult = '';
+      for (let i = 0; i < asciiInput.length; i++) {
+        const charCode = asciiInput.charCodeAt(i);
+        const binaryChar = charCode.toString(2).padStart(8, '0');
+        binaryResult += binaryChar + ' ';
+      }
+      binaryASCIIResult.textContent = `Binary: ${binaryResult}`;
+    }
+    // Background color changing
+    setInterval(function() {
+      const colors = ['#F0F0F0', '#E6E6E6', '#D9D9D9', '#CCCCCC']; // Define your color palette
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.style.backgroundColor = randomColor;
+    }, 3000); // Change color every 3 seconds (3000 milliseconds)
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+
