@@ -65,6 +65,7 @@
 
   <script>
     var music_sequence =[];
+    var wholelottared_count = [0,0]
     function addToCompiler(color,num) {
       const colorCompiler = document.getElementById('color-compiler');
       const square = document.createElement('div');
@@ -75,10 +76,22 @@
       colorCompiler.appendChild(square);
       var color_id = ["01010010 01100101 01100100", "01000010 01101100 01110101 01100101", "01000111 01110010 01100101 01100101 01101110","01011001 01100101 01101100 01101100 01101111 01110111"];
       music_sequence += color_id[num-1];
+      if(num ==1){
+        wholelottared_count[0] += 1
+      }
+      else{
+        wholelottared_count[1] += 1
+
+      }
       
     
     }
+
     async function colorReading(){
+      if(wholelottared_count[0]>=7 && wholelottared_count[1]==0){
+        const audio_egg = document.getElementById('audio2');
+        await playAudio(audio_egg);
+      }
       const sequence = music_sequence
         const audio = document.getElementById('audio1');
         for (let i = 0; i < sequence.length; i++) {
@@ -96,6 +109,7 @@
   <input type="text" id="sequenceInput">
   <button onclick="startReading()">Start</button>
   <audio id="audio1" src="binary_beat.mp3"></audio>
+  <audio id="audio2" src="carti_beat.mp3"></audio>
   <script>
     function showBinary(element) {
       const binaryText = element.querySelector('.binary-text');
