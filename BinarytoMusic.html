@@ -23,6 +23,7 @@
       margin: 10px;
       border: none;
       cursor: pointer;
+      position: relative;
     }
     #red { background-color: red; }
     #green { background-color: green; }
@@ -45,6 +46,30 @@
     h1 {
       color: white;
       font-family: Arial, sans-serif;
+      font-size: 3rem;
+      padding: 10px 20px;
+      border-radius: 20px;
+      display: inline-block;
+      transition: outline-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      background-color: lightseagreen;
+      border: 2px solid lightseagreen;
+    }
+    h1:hover {
+      outline: 4px solid rgba(255, 0, 0, 0.5); /* Red outline with more transparency */
+      transform: scale(1.05); /* Slightly larger size on hover */
+    }
+    .binary-display {
+      position: absolute;
+      display: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+      pointer-events: auto;
+      z-index: 1;
+      user-select: all; /* Allow text selection */
+    }
+    .square-btn:hover .binary-display {
+      display: block;
     }
   </style>
 </head>
@@ -53,15 +78,88 @@
   <h1>Color to Music</h1>
 
   <div class="container">
-    <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
-    <button id="green" class="square-btn" onclick="addToCompiler('green',2)"></button>
-    <button id="blue" class="square-btn" onclick="addToCompiler('blue',3)"></button>
-    <button id="yellow" class="square-btn" onclick="addToCompiler('yellow',4)"></button>
+    <button id="red" class="square-btn" onmousedown="displayBinary('red')" onmouseup="hideBinary('red')" onclick="addToCompiler('red',1)">
+      <div class="binary-display" id="red-binary">01110010 01100101 01100100</div>
+    </button>
+    <button id="green" class="square-btn" onmousedown="displayBinary('green')" onmouseup="hideBinary('green')" onclick="addToCompiler('green',2)">
+      <div class="binary-display" id="green-binary">01000010 01101100 01110101 01100101</div>
+    </button>
+    <button id="blue" class="square-btn" onmousedown="displayBinary('blue')" onmouseup="hideBinary('blue')" onclick="addToCompiler('blue',3)">
+      <div class="binary-display" id="blue-binary">01000111 01110010 01100101 01100101 01101110</div>
+    </button>
+    <button id="yellow" class="square-btn" onmousedown="displayBinary('yellow')" onmouseup="hideBinary('yellow')" onclick="addToCompiler('yellow',4)">
+      <div class="binary-display" id="yellow-binary">01011001 01100101 01101100 01101100 01101111 01110111</div>
+    </button>
     
     <div id="color-compiler"></div>
     
     <button id="play-btn" onclick="colorReading()">Play</button>
   </div>
+
+  <script>
+    var music_sequence = "";
+    
+    function addToCompiler(color, num) {
+      const colorCompiler = document.getElementById('color-compiler');
+      const square = document.createElement('div');
+      square.style.backgroundColor = color;
+      square.style.width = '50px';
+      square.style.height = '50px';
+      square.style.marginRight = '5px';
+      colorCompiler.appendChild(square);
+      var color_id = [
+        "01110010 01100101 01100100",
+        "01000010 01101100 01110101 01100101",
+        "01000111 01110010 01100101 01100101 01101110",
+        "01011001 01100101 01101100 01101100 01101111 01110111"
+      ];
+      music_sequence += color_id[num - 1];
+    }
+    
+    async function colorReading() {
+      const sequence = music_sequence;
+      const audio = document.getElementById('audio1');
+      for (let i = 0; i < sequence.length; i++) {
+        let digit = sequence.charAt(i);
+        if (digit === '1') {
+          await playAudio(audio);
+        }
+        await delay(50);
+      }
+    }
+    
+    function playAudio(audioElement) {
+      return new Promise((resolve) => {
+        audioElement.play();
+        audioElement.onended = () => {
+          resolve();
+        };
+      });
+    }
+    
+    function delay(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
+    
+    function displayBinary(color) {
+      const binaryDisplay = document.getElementById(color + "-binary");
+      binaryDisplay.style.display = "block";
+      binaryDisplay.addEventListener('mouseleave', hideBinary.bind(null, color), { once: true });
+    }
+    
+    function hideBinary(color) {
+      const binaryDisplay = document.getElementById(color + "-binary");
+      binaryDisplay.style.display = "none";
+    }
+  </script>
+
+  <label for="sequenceInput">Enter sequence (0s and 1s):</label>
+  <input type="text" id="sequenceInput">
+  <button onclick="startReading()">Start</button>
+  <audio id="audio1" src="binary_beat.mp3"></audio>
+  <audio id="audio2" src="carti_beat.mp3"></audio>
 
   <script>
     var music_sequence =[];
@@ -92,6 +190,7 @@
         const audio_egg = document.getElementById('audio2');
         await playAudio(audio_egg);
       }
+      else{
       const sequence = music_sequence
         const audio = document.getElementById('audio1');
         for (let i = 0; i < sequence.length; i++) {
@@ -103,37 +202,20 @@
           await delay(50); // 0.30 second delay
         }
       }
-  </script>
-  <!-- Binary reader -->
-  <label for="sequenceInput">Enter sequence (0s and 1s):</label>
-  <input type="text" id="sequenceInput">
-  <button onclick="startReading()">Start</button>
-  <audio id="audio1" src="binary_beat.mp3"></audio>
-  <audio id="audio2" src="carti_beat.mp3"></audio>
-  <script>
-    function showBinary(element) {
-      const binaryText = element.querySelector('.binary-text');
-      binaryText.style.display = (binaryText.style.display === 'none' || !binaryText.style.display) ? 'inline' : 'none';
     }
-    var audio = document.getElementById("myAudio");
-    var playBtn = document.getElementById("playBtn");
-    var pauseBtn = document.getElementById("pauseBtn");
-    playBtn.addEventListener("click", function() {
-      audio.play();
-    });
-    pauseBtn.addEventListener("click", function() {
-    audio.pause();
-    });
-    async function startReading() {
+  </script>
+
+  <script>
+    function startReading() {
       const sequence = document.getElementById('sequenceInput').value;
         const audio = document.getElementById('audio1');
         for (let i = 0; i < sequence.length; i++) {
           let digit = sequence.charAt(i);
           console.log(digit);
           if (digit === '1') {
-            await playAudio(audio);
+            playAudio(audio);
           }
-          await delay(50); // 0.25 second delay
+          delay(50);
         }
       }
       function playAudio(audioElement) {
@@ -150,8 +232,5 @@
         });
       }
     </script>
-  </div>
 </body>
 </html>
-</html>
-
