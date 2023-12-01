@@ -205,32 +205,46 @@
     }
   </script>
 
-  <script>
-    function startReading() {
-      const sequence = document.getElementById('sequenceInput').value;
-        const audio = document.getElementById('audio1');
-        for (let i = 0; i < sequence.length; i++) {
-          let digit = sequence.charAt(i);
-          console.log(digit);
-          if (digit === '1') {
-            playAudio(audio);
+  
+    <script>
+      function showBinary(element) {
+        const binaryText = element.querySelector('.binary-text');
+        binaryText.style.display = (binaryText.style.display === 'none' || !binaryText.style.display) ? 'inline' : 'none';
+      }
+      var audio = document.getElementById("myAudio");
+      var playBtn = document.getElementById("playBtn");
+      var pauseBtn = document.getElementById("pauseBtn");
+      playBtn.addEventListener("click", function() {
+        audio.play();
+      });
+      pauseBtn.addEventListener("click", function() {
+      audio.pause();
+      });
+      async function startReading() {
+        const sequence = document.getElementById('sequenceInput').value;
+          const audio = document.getElementById('audio1');
+          for (let i = 0; i < sequence.length; i++) {
+            let digit = sequence.charAt(i);
+            console.log(digit);
+            if (digit === '1') {
+              await playAudio(audio);
+            }
+            await delay(50); // 0.25 second delay
           }
-          delay(50);
         }
-      }
-      function playAudio(audioElement) {
-        return new Promise((resolve) => {
-          audioElement.play();
-          audioElement.onended = () => {
-            resolve();
-          };
-        });
-      }
-      function delay(ms) {
-        return new Promise((resolve) => {
-          setTimeout(resolve, ms);
-        });
-      }
-    </script>
+        function playAudio(audioElement) {
+          return new Promise((resolve) => {
+            audioElement.play();
+            audioElement.onended = () => {
+              resolve();
+            };
+          });
+        }
+        function delay(ms) {
+          return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+          });
+        }
+      </script>
 </body>
 </html>
