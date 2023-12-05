@@ -111,8 +111,23 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    <link rel="stylesheet" href="sidenav.css">
 </head>
 <body>
+  <div id="SideNavModal"></div>
+  <nav id="SideNav">
+    
+    <div id="SideNavBar">
+      <h2 id="SideNavTitle">Text To Binary</h2>
+      <img id="CreatorImg" src="deva.png">
+      <h3 id="SideNavName">Deva  Sasikumar</h3>
+      <p id="SideNavDescription">Converts the text from Ascii to binary</p>
+      <a href="index.html">Webfeed To Binary</a>
+      <br>
+      <a href="Binarytomusic.html">Binary To Music</a>
+    </div>
+
+  </nav>
   <div class="container">
     <div id="binaryToDecimal">
       <h1>Binary to Decimal</h1>
@@ -156,6 +171,7 @@
       document.body.style.backgroundColor = randomColor;
     }, 3000); // Change color every 3 seconds (3000 milliseconds)
   </script>
+  <script src="src/sideNav.js"></script>
 </body>
 </html>
 
