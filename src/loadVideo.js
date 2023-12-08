@@ -6,10 +6,19 @@ let videoElement = document.getElementById("vid");
 let binText = document.getElementById("binText")
 let actText = document.getElementById("activate")
 let mediaDevices = navigator.mediaDevices;
+let camActive = false;
 vid.muted = true;
 let fps = 60
 function WebCamAct(){
-    actText.style.display = "none"
+    if(camActive)
+    {
+    //    clearInterval(canvasInterval)
+    //    vid.pause() 
+    //    ctx.clearRect(0,0,canvas.width,canvas.height)
+      //mediaDevices.getUserMedia({})
+      window.location.reload()
+    }
+    actText.innerText = "Establishing connection, please wait for the prompt..."
         // Accessing the user camera and video.
         mediaDevices
             .getUserMedia({
@@ -17,7 +26,8 @@ function WebCamAct(){
                 audio: false, //maybe add an implementation for this? user claps and the feed changes?, could be really cool
             })
             .then((stream) => {
-
+                actText.style.display = "none"
+                camActive = true;
                 // Changing the source of video to current stream.
                 videoElement.srcObject = stream;
                 videoElement.addEventListener("loadedmetadata", () => {
@@ -27,7 +37,13 @@ function WebCamAct(){
                 activateCamera()
                 });
             })
-            .catch(alert);
+            .catch(function(error)
+            {
+                actText.style.display = "block"
+                actText.innerText = "This project requires the webcam!"
+            }
+                
+            );
     }
 let bwEl = document.getElementById("bwText")
 

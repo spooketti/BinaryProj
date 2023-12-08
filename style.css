@@ -15,6 +15,17 @@ body
     margin:0;
 }
 
+#titleh1
+{
+    position: relative;
+    width:50%;
+    left:25%;
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-family: 'DM Sans', sans-serif;
+}
+
 #NavBar {
     height: 60px;
     width: 100%;

@@ -114,4 +114,19 @@
     height:100%;
     width:1%;
     background-color: black;
+    text-orientation:sideways;
+    transform:rotate(180deg);
+    writing-mode: vertical-rl;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    color:white;
+    padding:1%;
+    transition: all .5s;
+}
+
+#hamburgerMenu:hover
+{
+    transform: scaleX(110%) rotate(180deg);
+    box-shadow: 110px 110px 110px 110px white;
 }

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="sidenav.css">
   </head>
   <body>
-    <div id="SideNavModal"></div>
-    <nav id="SideNav">
+    <div id="SideNavModal" ></div>
+    <nav id="SideNav"onclick="sideBar()">
       
       <div id="SideNavBar">
         <h1 id="SideNavTitle">Webfeed to Binary</h1>
@@ -24,8 +24,8 @@
       </div>
 
     </nav>
-    <div id="hamburgerMenu">
-      
+    <div id="hamburgerMenu" onclick="sideBar()">
+      Our Other Projects
     </div>
     
     <!--
@@ -35,7 +35,7 @@
       <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button> 
     </nav>
     -->
-    <div></div>
+    <h1 id="titleh1">Video Feed In Binary</h1>
     <div id="CanvasHold" onclick="WebCamAct()">
       <span  id="activate">Activate</span>
       <canvas id="canvasElement" width="640" height="480"></canvas>
