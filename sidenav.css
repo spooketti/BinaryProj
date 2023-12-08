@@ -123,6 +123,7 @@
     color:white;
     padding:1%;
     transition: all .5s;
+    z-index: 2;
 }
 
 #hamburgerMenu:hover
