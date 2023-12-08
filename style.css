@@ -26,6 +26,16 @@ body
     font-family: 'DM Sans', sans-serif;
 }
 
+#base 
+{
+    position: relative;
+    right:0;
+    display: flex;
+    justify-content: right;
+    color:white;
+    font-family: 'DM Sans', sans-serif;
+}
+
 #NavBar {
     height: 60px;
     width: 100%;

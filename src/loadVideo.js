@@ -5,6 +5,7 @@ let but = document.getElementById("but");
 let videoElement = document.getElementById("vid");
 let binText = document.getElementById("binText")
 let actText = document.getElementById("activate")
+let base = document.getElementById("radixvalue")
 let mediaDevices = navigator.mediaDevices;
 let camActive = false;
 vid.muted = true;
@@ -29,11 +30,16 @@ function WebCamAct(){
                 actText.style.display = "none"
                 camActive = true;
                 // Changing the source of video to current stream.
-                videoElement.srcObject = stream;
+                
+                videoElement.srcObject = stream
+                document.getElementById("titleh1").innerText = stream.getVideoTracks()[0].label
+                console.log(stream.getVideoTracks()[0])
+                //stream.getVideoTracks()[0])
                 videoElement.addEventListener("loadedmetadata", () => {
                     videoElement.play();
                 canvas.height = stream.getTracks()[0].getSettings().height
                 canvas.width = stream.getTracks()[0].getSettings().width
+                
                 activateCamera()
                 });
             })
@@ -75,7 +81,7 @@ function drawImage(dat) {
     let binString = BWString.match(/.{1,8}/g);
     binString = binString.join(" ")
     binString = String.fromCharCode(
-        ...binString.split(' ').map(bin => parseInt(bin, 2))
+        ...binString.split(' ').map(bin => parseInt(bin, base.value))
       )
     //console.log(binString)
     binText.innerText = binString
