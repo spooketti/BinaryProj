@@ -76,27 +76,22 @@
 </head>
 <nav id="NavBar">
     Nav Bar
-    <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button> 
-    <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button> 
-
+    <button id="BinarytoMusic" onclick="window.location.href='BinarytoMusic.html'">Binary to Music</button>
+    <button id="TextToBinary" onclick="window.location.href='texttobinary.html'">Text To Binary</button>
   </nav>
 <body>
-
   <h1>Color to Music</h1>
   <div id="SideNavModal"></div>
   <nav id="SideNav">
-    
     <div id="SideNavBar">
       <h2 id="SideNavTitle">Binary To Music</h2>
-      <img id="CreatorImg" src="sri.png" style="width:50%">
-      <img id="CreatorImg" src="soham.png" style="width:50%">
+      <img id="CreatorImg" src="Sri&Soham.png" style="width:80%">
       <h3 id="SideNavName">Soham Kulkarni, Sri Surapaneni  </h3>
-      <p id="SideNavDescription">We did a binary to music converter</p>
+      <p id="SideNavDescription">We did a binary to music converter. We have 4 colors that can play "music". Every color is translated to its binary code in letters. Then, using that binary code, it plays a little beat every 1 in the binary code. Every 0, it pauses for 0.25 seconds. You might wanna try putting in a "Whole Lotta Red".</p>
       <a href="index.html">Webfeed To Binary</a>
       <br>
       <a href="texttobinary.html">Text to Binary</a>
     </div>
-
   </nav>
   <div class="container">
     <button id="red" class="square-btn" onmousedown="displayBinary('red')" onmouseup="hideBinary('red')" onclick="addToCompiler('red',1)">
@@ -111,15 +106,11 @@
     <button id="yellow" class="square-btn" onmousedown="displayBinary('yellow')" onmouseup="hideBinary('yellow')" onclick="addToCompiler('yellow',4)">
       <div class="binary-display" id="yellow-binary">01011001 01100101 01101100 01101100 01101111 01110111</div>
     </button>
-    
     <div id="color-compiler"></div>
-    
     <button id="play-btn" onclick="colorReading()">Play</button>
   </div>
-
   <script>
     var music_sequence = "";
-    
     function addToCompiler(color, num) {
       const colorCompiler = document.getElementById('color-compiler');
       const square = document.createElement('div');
@@ -136,7 +127,6 @@
       ];
       music_sequence += color_id[num - 1];
     }
-    
     async function colorReading() {
       const sequence = music_sequence;
       const audio = document.getElementById('audio1');
@@ -148,7 +138,6 @@
         await delay(50);
       }
     }
-    
     function playAudio(audioElement) {
       return new Promise((resolve) => {
         audioElement.play();
@@ -157,31 +146,26 @@
         };
       });
     }
-    
     function delay(ms) {
       return new Promise((resolve) => {
         setTimeout(resolve, ms);
       });
     }
-    
     function displayBinary(color) {
       const binaryDisplay = document.getElementById(color + "-binary");
       binaryDisplay.style.display = "block";
       binaryDisplay.addEventListener('mouseleave', hideBinary.bind(null, color), { once: true });
     }
-    
     function hideBinary(color) {
       const binaryDisplay = document.getElementById(color + "-binary");
       binaryDisplay.style.display = "none";
     }
   </script>
-
   <label for="sequenceInput">Enter sequence (0s and 1s):</label>
   <input type="text" id="sequenceInput">
   <button onclick="startReading()">Start</button>
   <audio id="audio1" src="binary_beat.mp3"></audio>
   <audio id="audio2" src="carti_beat.mp3"></audio>
-
   <script>
     var music_sequence =[];
     var wholelottared_count = [0,0]
@@ -200,12 +184,8 @@
       }
       else{
         wholelottared_count[1] += 1
-
       }
-      
-    
     }
-
     async function colorReading(){
       if(wholelottared_count[0]>=7 && wholelottared_count[1]==0){
         const audio_egg = document.getElementById('audio2');
@@ -225,7 +205,6 @@
       }
     }
   </script>
-
   <!-- Binary reader -->
   <label for="sequenceInput">Enter sequence (0s and 1s):</label>
   <input type="text" id="sequenceInput">
