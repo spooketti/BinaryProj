@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Color to Music</title>
+  <link rel="stylesheet" href="sidenav.css">
   <style>
     body {
       background-color: rgb(88, 181, 231);
@@ -49,6 +50,21 @@
   </style>
 </head>
 <body>
+  <div id="SideNavModal"></div>
+  <nav id="SideNav" onclick="sideBar()">
+    <div id="SideNavBar">
+      <h2 id="SideNavTitle">Binary To Music</h2>
+      <img id="CreatorImg" src="Sri&Soham.png" style="width:80%">
+      <h3 id="SideNavName">Soham Kulkarni, Sri Surapaneni  </h3>
+      <p id="SideNavDescription">We did a binary to music converter. We have 4 colors that can play "music". Every color is translated to its binary code in letters. Then, using that binary code, it plays a little beat every 1 in the binary code. Every 0, it pauses for 0.25 seconds. You might wanna try putting in a "Whole Lotta Red".</p>
+      <a href="index.html">Webfeed To Binary</a>
+      <br>
+      <a href="texttobinary.html">Text to Binary</a>
+    </div>
+  </nav>
+    <div id="hamburgerMenu" onclick="sideBar()">
+      Our Other Projects
+    </div>
   <h1>Color to Music</h1>
   <div class="container">
     <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
@@ -130,6 +146,7 @@
       }
     </script>
   </div>
+  <script src="src/sideNav.js"></script>
 </body>
 </html>
 </html>
