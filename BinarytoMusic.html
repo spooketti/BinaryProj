@@ -50,13 +50,14 @@
   </style>
 </head>
 <body>
+  
   <div id="SideNavModal"></div>
   <nav id="SideNav" onclick="sideBar()">
     <div id="SideNavBar">
       <h2 id="SideNavTitle">Binary To Music</h2>
       <img id="CreatorImg" src="Sri&Soham.png" style="width:80%">
       <h3 id="SideNavName">Soham Kulkarni, Sri Surapaneni  </h3>
-      <p id="SideNavDescription">We did a binary to music converter. We have 4 colors that can play "music". Every color is translated to its binary code in letters. Then, using that binary code, it plays a little beat every 1 in the binary code. Every 0, it pauses for 0.25 seconds. You might wanna try putting in a "Whole Lotta Red".</p>
+      <p id="SideNavDescription">We did a binary to music converter. We have 4 colors that can play "music". Every color is translated to its binary code in letters. Then, using that binary code, it plays a little beat every 1 in the binary code. Every 0, it pauses for 0.25 seconds. You might wanna try putting in a "Whole Lotta Red" or build a "Yellow Brick Road".</p>
       <a href="index.html">Webfeed To Binary</a>
       <br>
       <a href="texttobinary.html">Text to Binary</a>
@@ -65,46 +66,15 @@
     <div id="hamburgerMenu" onclick="sideBar()">
       Our Other Projects
     </div>
-  <h1>Color to Music</h1>
-  <div class="container">
-    <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
-    <button id="green" class="square-btn" onclick="addToCompiler('green',2)"></button>
-    <button id="blue" class="square-btn" onclick="addToCompiler('blue',3)"></button>
-    <button id="yellow" class="square-btn" onclick="addToCompiler('yellow',4)"></button>
-    <div id="color-compiler"></div>
-    <button id="play-btn" onclick="colorReading()">Play</button>
-  </div>
-  <script>
-    var music_sequence =[];
-    function addToCompiler(color,num) {
-      const colorCompiler = document.getElementById('color-compiler');
-      const square = document.createElement('div');
-      square.style.backgroundColor = color;
-      square.style.width = '50px';
-      square.style.height = '50px';
-      square.style.marginRight = '5px';
-      colorCompiler.appendChild(square);
-      var color_id = ["01010010 01100101 01100100", "01000010 01101100 01110101 01100101", "01000111 01110010 01100101 01100101 01101110","01011001 01100101 01101100 01101100 01101111 01110111"];
-      music_sequence += color_id[num-1];
-    }
-    async function colorReading(){
-      const sequence = music_sequence
-        const audio = document.getElementById('audio1');
-        for (let i = 0; i < sequence.length; i++) {
-          let digit = sequence.charAt(i);
-          console.log(digit);
-          if (digit === '1') {
-            await playAudio(audio);
-          }
-          await delay(50); // 0.30 second delay
-        }
-      }
-  </script>
+
   <!-- Binary reader -->
+  <h1>Binary to Music</h1>
   <label for="sequenceInput">Enter sequence (0s and 1s):</label>
   <input type="text" id="sequenceInput">
   <button onclick="startReading()">Start</button>
   <audio id="audio1" src="binary_beat.mp3"></audio>
+  <audio id="audio2" src="carti_beat.mp3"></audio>
+  <audio id="audio3" src="elton_beat.mp3"></audio>
   <script>
     function showBinary(element) {
       const binaryText = element.querySelector('.binary-text');
@@ -145,6 +115,91 @@
         });
       }
     </script>
+
+  <h1>Color to Music</h1>
+  <div class="container">
+    <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
+    <button id="green" class="square-btn" onclick="addToCompiler('green',2)"></button>
+    <button id="blue" class="square-btn" onclick="addToCompiler('blue',3)"></button>
+    <button id="yellow" class="square-btn" onclick="addToCompiler('yellow',4)"></button>
+    <div id="color-compiler"></div>
+    <button id="play-btn" onclick="colorReading()">Play</button>
+  </div>
+  <script>
+    var music_sequence =[];
+    var color_frequency = [0,0,0,0,0];
+    function addToCompiler(color,num) {
+      const colorCompiler = document.getElementById('color-compiler');
+      const square = document.createElement('div');
+      square.style.backgroundColor = color;
+      square.style.width = '50px';
+      square.style.height = '50px';
+      square.style.marginRight = '5px';
+      colorCompiler.appendChild(square);
+      var color_id = ["01010010 01100101 01100100", "01000010 01101100 01110101 01100101", "01000111 01110010 01100101 01100101 01101110","01011001 01100101 01101100 01101100 01101111 01110111"];
+      music_sequence += color_id[num-1];
+      color_frequency[num-1]+=1;
+      console.log(color_frequency[0])
+      color_frequency[4]+=1;
+
+    }
+    async function colorReading(){
+      const sequence = music_sequence
+      if(color_frequency[0]>=7 && color_frequency[0] == color_frequency[4]){
+        console.log("inside");
+        const audio = document.getElementById('audio2')
+        await playAudio(audio);
+      }
+      if(color_frequency[3]>=7 && color_frequency[3] == color_frequency[4]){
+        console.log("inside");
+        const audio = document.getElementById('audio3')
+        await playAudio(audio);
+      }
+        const audio = document.getElementById('audio1');
+        for (let i = 0; i < sequence.length; i++) {
+          let digit = sequence.charAt(i);
+          console.log(digit);
+          if (digit === '1') {
+            await playAudio(audio);
+          }
+          await delay(50); // 0.05 second delay
+        }
+      }
+</script>
+<h1>ASCII to Music</h1>
+  <input type="text" id="asciiInput" placeholder="Enter ASCII characters">
+  <button onclick="convertAndPlay()">Convert & Play</button>
+  <p id="binarySequence"></p>
+
+
+  <script>
+    async function convertAndPlay() {
+      const asciiInput = document.getElementById('asciiInput').value;
+      let binarySequence = '';
+
+      for (let i = 0; i < asciiInput.length; i++) {
+        const charCode = asciiInput.charCodeAt(i);
+        const binaryChar = charCode.toString(2).padStart(8, '0');
+        binarySequence += binaryChar;
+      }
+      const audio = document.getElementById('audio1');
+        for (let i = 0; i < binarySequence.length; i++) {
+          let digit = binarySequence.charAt(i);
+          console.log(digit);
+          if (digit === '1') {
+            await playAudio(audio);
+          }
+          await delay(50)
+
+        }
+      }
+
+    function delay(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
+  </script>
   </div>
   <script src="src/sideNav.js"></script>
 </body>
