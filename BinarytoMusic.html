@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>Color to Music</title>
   <link rel="stylesheet" href="sidenav.css">
+  <div class="big-title">Binary and Music</div>
   <style>
     body {
-      background-color: rgb(88, 181, 231);
+      background-color: rgb(20, 19, 19);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -45,12 +46,41 @@
     }
     h1 {
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    /* styles for title containers for the different code parts*/
+    .titles-container {
+      display: flex;
+      justify-content: space-around;
+      background-color: #000000; /* background color of the large rectangles */
+      padding: 20px; 
+      border-radius: 100px; 
+      margin-bottom: 30px;
+      width: 80%; 
+      margin: 20px auto; 
+      border: 2px solid #ffffff;
+    }
+    .titles-container h1 {
+      color: #333;  
+      margin: 0;
+      padding: 10px 20px; 
+      border-radius: 15px; 
+      background-color: #16aa11; 
+    }
+    .big-title {
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 60px; 
+      color: white;
+      margin-top: 20px;
+    }
+    
+    h1 {
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
-  
   <div id="SideNavModal"></div>
   <nav id="SideNav" onclick="sideBar()">
     <div id="SideNavBar">
@@ -63,15 +93,38 @@
       <a href="texttobinary.html">Text to Binary</a>
     </div>
   </nav>
-    <div id="hamburgerMenu" onclick="sideBar()">
-      Our Other Projects
+  <div id="hamburgerMenu" onclick="sideBar()">
+    Our Other Projects
+  </div>
+  <div class="titles-container">
+    <h1>Binary to Music</h1>
+  </div>
+  <div class="content-container">
+    <label for="sequenceInput" style="color: white; font-family: 'Comic Sans MS', cursive;">Enter sequence (0s and 1s):</label>
+    <input type="text" id="sequenceInput">
+    <button onclick="startReading()" style="font-family: 'Comic Sans MS', cursive;">Start</button>
+  </div>
+  <div class="titles-container">
+    <h1>ASCII to Music</h1>
+  </div>
+  <div class="content-container">
+    <input type="text" id="asciiInput" placeholder="Enter ASCII characters" style="font-family: 'Comic Sans MS', cursive;">
+    <button onclick="convertAndPlay()" style="font-family: 'Comic Sans MS', cursive;">Convert & Play</button>
+    <p id="binarySequence"></p>
+  </div>
+  <div class="titles-container">
+    <h1>Color to Music</h1>
+  </div>
+  <div class="content-container">
+    <div class="container">
+      <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
+      <button id="green" class="square-btn" onclick="addToCompiler('green',2)"></button>
+      <button id="blue" class="square-btn" onclick="addToCompiler('blue',3)"></button>
+      <button id="yellow" class="square-btn" onclick="addToCompiler('yellow',4)"></button>
+      <div id="color-compiler"></div>
+      <button id="play-btn" onclick="colorReading()" style="font-family: 'Comic Sans MS', cursive;">Play</button>
     </div>
-
-  <!-- Binary reader -->
-  <h1>Binary to Music</h1>
-  <label for="sequenceInput">Enter sequence (0s and 1s):</label>
-  <input type="text" id="sequenceInput">
-  <button onclick="startReading()">Start</button>
+  </div>
   <audio id="audio1" src="binary_beat.mp3"></audio>
   <audio id="audio2" src="carti_beat.mp3"></audio>
   <audio id="audio3" src="elton_beat.mp3"></audio>
@@ -87,44 +140,34 @@
       audio.play();
     });
     pauseBtn.addEventListener("click", function() {
-    audio.pause();
+      audio.pause();
     });
     async function startReading() {
       const sequence = document.getElementById('sequenceInput').value;
-        const audio = document.getElementById('audio1');
-        for (let i = 0; i < sequence.length; i++) {
-          let digit = sequence.charAt(i);
-          console.log(digit);
-          if (digit === '1') {
-            await playAudio(audio);
-          }
-          await delay(50); // 0.25 second delay
+      const audio = document.getElementById('audio1');
+      for (let i = 0; i < sequence.length; i++) {
+        let digit = sequence.charAt(i);
+        console.log(digit);
+        if (digit === '1') {
+          await playAudio(audio);
         }
+        await delay(50); // 0.25 second delay
       }
-      function playAudio(audioElement) {
-        return new Promise((resolve) => {
-          audioElement.play();
-          audioElement.onended = () => {
-            resolve();
-          };
-        });
-      }
-      function delay(ms) {
-        return new Promise((resolve) => {
-          setTimeout(resolve, ms);
-        });
-      }
-    </script>
-
-  <h1>Color to Music</h1>
-  <div class="container">
-    <button id="red" class="square-btn" onclick="addToCompiler('red',1)"></button>
-    <button id="green" class="square-btn" onclick="addToCompiler('green',2)"></button>
-    <button id="blue" class="square-btn" onclick="addToCompiler('blue',3)"></button>
-    <button id="yellow" class="square-btn" onclick="addToCompiler('yellow',4)"></button>
-    <div id="color-compiler"></div>
-    <button id="play-btn" onclick="colorReading()">Play</button>
-  </div>
+    }
+    function playAudio(audioElement) {
+      return new Promise((resolve) => {
+        audioElement.play();
+        audioElement.onended = () => {
+          resolve();
+        };
+      });
+    }
+    function delay(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
+  </script>
   <script>
     var music_sequence =[];
     var color_frequency = [0,0,0,0,0];
@@ -141,7 +184,6 @@
       color_frequency[num-1]+=1;
       console.log(color_frequency[0])
       color_frequency[4]+=1;
-
     }
     async function colorReading(){
       const sequence = music_sequence
@@ -155,53 +197,42 @@
         const audio = document.getElementById('audio3')
         await playAudio(audio);
       }
-        const audio = document.getElementById('audio1');
-        for (let i = 0; i < sequence.length; i++) {
-          let digit = sequence.charAt(i);
-          console.log(digit);
-          if (digit === '1') {
-            await playAudio(audio);
-          }
-          await delay(50); // 0.05 second delay
+      const audio = document.getElementById('audio1');
+      for (let i = 0; i < sequence.length; i++) {
+        let digit = sequence.charAt(i);
+        console.log(digit);
+        if (digit === '1') {
+          await playAudio(audio);
         }
+        await delay(50); // 0.05 second delay
       }
-</script>
-<h1>ASCII to Music</h1>
-  <input type="text" id="asciiInput" placeholder="Enter ASCII characters">
-  <button onclick="convertAndPlay()">Convert & Play</button>
-  <p id="binarySequence"></p>
-
-
+    }
+  </script>
   <script>
     async function convertAndPlay() {
       const asciiInput = document.getElementById('asciiInput').value;
       let binarySequence = '';
-
       for (let i = 0; i < asciiInput.length; i++) {
         const charCode = asciiInput.charCodeAt(i);
         const binaryChar = charCode.toString(2).padStart(8, '0');
         binarySequence += binaryChar;
       }
       const audio = document.getElementById('audio1');
-        for (let i = 0; i < binarySequence.length; i++) {
-          let digit = binarySequence.charAt(i);
-          console.log(digit);
-          if (digit === '1') {
-            await playAudio(audio);
-          }
-          await delay(50)
-
+      for (let i = 0; i < binarySequence.length; i++) {
+        let digit = binarySequence.charAt(i);
+        console.log(digit);
+        if (digit === '1') {
+          await playAudio(audio);
         }
+        await delay(50);
       }
-
+    }
     function delay(ms) {
       return new Promise((resolve) => {
         setTimeout(resolve, ms);
       });
     }
   </script>
-  </div>
   <script src="src/sideNav.js"></script>
 </body>
-</html>
 </html>
